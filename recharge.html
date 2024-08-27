@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="network">
+        <option value=""> choose network </option>
+        <option value="mtn">mtn</option>
+        <option value="glo">glo</option>
+        <option value="airtel">airtel</option>
+        <option value="9mobile">9mobile</option>
+    </select>
+
+    <select id="amount">
+        <option value="">choose amount</option>
+        <option value="100">100</option>
+        <option value="200">200</option>
+        <option value="500">500</option>
+        <option value="1000">1000</option>
+    </select>
+
+    <p id="pin"></p>
+    <button onclick="generatePin()"> generate </button>
+
+    <input id="input" type="text" placeholder="*310*pin#">
+    <button onclick="loadCard()"> load </button>
+
+</body>
+
+</html>
+<script>
+
+    
+    function generatePin() {
+        let network = document.getElementById('network').value
+        let amount = document.getElementById('amount').value
+        let card = document.getElementById('pin')
+        
+         if (network == '') {
+            alert(`please select a network`)
+        }else if (amount == '') {
+            alert('please choose an amount')
+        }else{
+            pin = ''
+            for (let index = 0; index < 15; index++) {
+            let randomNum = Math.floor(Math.random() * 10)
+            pin = pin + randomNum
+            
+        }
+        card.innerHTML = pin
+        }
+        
+        
+    }
+
+
+    function loadCard() {
+        let network = document.getElementById('network').value
+        let amount = document.getElementById('amount').value
+        let input = document.getElementById('input').value.trim()
+        let card = document.getElementById('pin')
+        let format = `*310*${pin}#`
+
+        if (input == '') {
+            alert('please input a pin')
+        }else if (input !== format) {
+            alert('dial *310*pin#')
+        }else{
+            alert(`you have successfuly recharged #${amount} to your ${network}`)
+        }
+        card.innerHTML = ''
+    }
+</script>
